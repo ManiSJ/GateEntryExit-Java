@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost\SQLEXPRESS01;databaseName=GateEntryExit;encrypt=True;trustServerCertificate=True;
+    username: gateentryexit
+    password: gateentryexit
+    platform: mssql
+  jpa:
+    show-sql: true
+server:
+  port: 8080
