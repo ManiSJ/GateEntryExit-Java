@@ -1,4 +1,4 @@
-package dtos;
+package com.gateEntryExit.dtos;
 
 import lombok.Data;
 import lombok.Getter;

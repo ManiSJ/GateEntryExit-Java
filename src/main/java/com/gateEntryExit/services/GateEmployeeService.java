@@ -1,15 +1,18 @@
-package services;
+package com.gateEntryExit.services;
 
-import domain.GateEmployee;
-import dtos.GateEmployeeDto;
-import dtos.GetAllGateEmployeeDto;
+import com.gateEntryExit.domain.GateEmployee;
+import com.gateEntryExit.dtos.CreateGateEmployeeDto;
+import com.gateEntryExit.dtos.GateEmployeeDto;
+import com.gateEntryExit.dtos.GetAllGateEmployeeDto;
+import com.gateEntryExit.dtos.UpdateGateEmployeeDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import repository.IGateEmployeeRepository;
+import com.gateEntryExit.repository.IGateEmployeeRepository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class GateEmployeeService {
@@ -24,28 +27,29 @@ public class GateEmployeeService {
                 PageRequest.of(getAllGateEmployeeDto.getPage(), getAllGateEmployeeDto.getSize(), Sort.by("name")));
     }
 
-    public GateEmployee get(String id){
+    public GateEmployee get(UUID id){
         return this._gateEmployeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee not found"));
     }
 
-    public GateEmployee Create(GateEmployeeDto gateEmployeeDto){
-        var gateEmployee = new GateEmployee(gateEmployeeDto.getName());
+    public GateEmployee Create(CreateGateEmployeeDto createGateEmployeeDto){
+        var gateEmployee = new GateEmployee(createGateEmployeeDto.getName());
         this._gateEmployeeRepository.save(gateEmployee);
         return gateEmployee;
     }
 
-    public GateEmployee Update(String id, GateEmployeeDto gateEmployeeDto){
+    public GateEmployee Update(UpdateGateEmployeeDto updateGateEmployeeDto){
         GateEmployee gateEmployee = null;
-        Optional<GateEmployee> gateEmployeeOptional = this._gateEmployeeRepository.findById(id);
+        Optional<GateEmployee> gateEmployeeOptional =
+                this._gateEmployeeRepository.findById(updateGateEmployeeDto.getId());
        if(gateEmployeeOptional.isPresent()){
            gateEmployee = gateEmployeeOptional.get();
-           gateEmployee.setName(gateEmployeeDto.getName());
+           gateEmployee.setName(updateGateEmployeeDto.getName());
            this._gateEmployeeRepository.save(gateEmployee);
        }
         return gateEmployee;
     }
 
-    public void Delete(String id){
+    public void Delete(UUID id){
         this._gateEmployeeRepository.deleteById(id);
     }
 }

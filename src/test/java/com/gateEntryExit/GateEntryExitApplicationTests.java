@@ -1,4 +1,4 @@
-package com.example.GateEntryExit;
+package com.gateEntryExit;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

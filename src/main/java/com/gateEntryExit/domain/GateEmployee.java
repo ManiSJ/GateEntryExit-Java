@@ -1,10 +1,10 @@
-package domain;
+package com.gateEntryExit.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UuidGenerator;
+
+import java.util.UUID;
 
 @Entity
 @Table(name = "GateEmployees")
@@ -13,7 +13,8 @@ public class GateEmployee {
     @Id
     @UuidGenerator
     @Column(name = "Id", unique = true, updatable = false)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     private String name;
 
@@ -25,7 +26,11 @@ public class GateEmployee {
         this.setName(name);
     }
 
-    public String getId(){
+    public void setId(UUID id){
+        this.id = id;
+    }
+
+    public UUID getId(){
         return this.id;
     }
 
