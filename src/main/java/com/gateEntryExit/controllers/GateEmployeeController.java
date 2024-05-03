@@ -11,8 +11,7 @@ import org.springframework.data.domain.Page;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/api")
+@RequestMapping("/api/gateEmployee")
 public class GateEmployeeController {
     private final GateEmployeeService _gateEmployeeService;
 
@@ -20,31 +19,31 @@ public class GateEmployeeController {
         _gateEmployeeService = gateEmployeeService;
     }
 
-    @GetMapping(value = "/gateEmployee/getAll")
-    public Page<GateEmployeeDto> getAll(GetAllGateEmployeeDto getAllGateEmployeeDto){
+    @PostMapping(value = "/getAll")
+    public Page<GateEmployeeDto> getAll(@RequestBody GetAllGateEmployeeDto getAllGateEmployeeDto){
         return this._gateEmployeeService.getAll(getAllGateEmployeeDto)
                 .map(entity -> new GateEmployeeDto(entity.getId(), entity.getName()));
     }
 
-    @GetMapping(value = "/gateEmployee/get/{id}")
+    @GetMapping(value = "/get/{id}")
     public GateEmployeeDto get(@PathVariable("id") UUID id){
         var gateEmployee = this._gateEmployeeService.get(id);
         return new GateEmployeeDto(gateEmployee.getId(), gateEmployee.getName());
     }
 
-    @PostMapping(value = "/gateEmployee/create")
+    @PostMapping(value = "/create")
     public GateEmployeeDto Create(@RequestBody CreateGateEmployeeDto createGateEmployeeDto){
         var gateEmployee = this._gateEmployeeService.Create(createGateEmployeeDto);
         return new GateEmployeeDto(gateEmployee.getId(), gateEmployee.getName());
     }
 
-    @PutMapping(value = "/gateEmployee/update", consumes = "application/json")
+    @PostMapping(value = "/update", consumes = "application/json")
     public GateEmployeeDto Update(@RequestBody UpdateGateEmployeeDto updateGateEmployeeDto){
         var gateEmployee = this._gateEmployeeService.Update(updateGateEmployeeDto);
         return new GateEmployeeDto(gateEmployee.getId(), gateEmployee.getName());
     }
 
-    @DeleteMapping(value = "/gateEmployee/delete/{id}")
+    @DeleteMapping(value = "/delete/{id}")
     public void Delete(@PathVariable("id") UUID id){
         this._gateEmployeeService.Delete(id);
     }
