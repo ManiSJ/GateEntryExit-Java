@@ -2,5 +2,8 @@
 
 Spring Boot 3.2.5, Java 21, Maven, MS SQL Server
 
-![image](https://github.com/ManiSJ/GateEntryExit-Java/assets/11914200/e2199895-fcec-4f42-a7a3-56a79ceec9df)
+React - https://github.com/ManiSJ/GateEntryExit-React
+
+![image](https://github.com/ManiSJ/GateEntryExit-Java/assets/11914200/53bacf8d-0236-48e6-8210-26808ab21c97)
+
 
