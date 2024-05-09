@@ -1,6 +1,6 @@
 # GateEntryExit - Java
 
-Spring Boot 3.2.5, Java 21, Maven, MS SQL Server
+Spring Boot 3.2.5, Java 21, Maven, MS SQL Server, Spring Data JPA
 
 React - https://github.com/ManiSJ/GateEntryExit-React <br />
 Umbraco - https://github.com/ManiSJ/GateEntryExit-Umbraco
